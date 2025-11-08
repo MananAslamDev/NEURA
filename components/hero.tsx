@@ -8,149 +8,185 @@ import { ArrowRight, Play } from "lucide-react";
 import { gsap } from "gsap"; // Import GSAP for all components
 
 //=================================================================
-// 1. ANIMATED BACKGROUND COMPONENT (Merged)
+// 1. ANIMATED BACKGROUND COMPONENT (OPTIMIZED)
 //=================================================================
-
-/**
- * Renders an animated network of nodes and lines using GSAP.
- * This component is now self-contained within Hero.tsx.
- */
 function AnimatedBackground() {
   const svgRef = useRef<SVGSVGElement>(null);
-  const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
 
-    const nodes: any[] = [];
-    const lines: any[] = [];
-    const nodeCount = 30;
-    const lineCount = 40;
-    let width = window.innerWidth;
-    let height = window.innerHeight;
+    // Use gsap.context() for scoping and cleanup.
+    let ctx = gsap.context(() => {
+      // Reduced element count for performance
+      const nodeCount = 15;
+      const lineCount = 20;
+      let width = window.innerWidth;
+      let height = window.innerHeight;
 
-    // FIX: Set the correct viewBox immediately on the client to avoid hydration mismatch
-    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      const nodes: any[] = [];
+      const lines: any[] = [];
 
-    // --- Create SVG Glow Filter ---
-    const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-    defs.innerHTML = `
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
-        <feMerge>
-          <feMergeNode in="coloredBlur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    `;
-    svg.appendChild(defs);
-
-    // --- Create Nodes ---
-    for (let i = 0; i < nodeCount; i++) {
-      const circle = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "circle"
-      );
-      const data = {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() * 3 + 2,
-      };
-      circle.setAttribute("cx", data.x.toString());
-      circle.setAttribute("cy", data.y.toString());
-      circle.setAttribute("r", data.radius.toString());
-      circle.setAttribute("fill", "#a78bfa");
-      circle.setAttribute("filter", "url(#glow)");
-      svg.appendChild(circle);
-      nodes.push({ el: circle, data });
-
-      // Animate node position
-      gsap.to(data, {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        duration: Math.random() * 20 + 15,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }
-
-    // --- Create Lines ---
-    for (let i = 0; i < lineCount; i++) {
-      const line = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "line"
-      );
-      const nodeAIndex = Math.floor(Math.random() * nodeCount);
-      const nodeBIndex = Math.floor(Math.random() * nodeCount);
-      line.setAttribute("x1", nodes[nodeAIndex].data.x.toString());
-      line.setAttribute("y1", nodes[nodeAIndex].data.y.toString());
-      line.setAttribute("x2", nodes[nodeBIndex].data.x.toString());
-      line.setAttribute("y2", nodes[nodeBIndex].data.y.toString());
-      line.setAttribute("stroke", "#a78bfa");
-      line.setAttribute("stroke-width", "0.5");
-      line.setAttribute("opacity", "0.3");
-      line.setAttribute("filter", "url(#glow)");
-      svg.prepend(line);
-      lines.push({ el: line, nodeAIndex, nodeBIndex });
-
-      // Animate line opacity
-      gsap.to(line, {
-        opacity: Math.random() * 0.4 + 0.1,
-        duration: Math.random() * 3 + 1,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: Math.random() * 2,
-      });
-    }
-
-    // --- Ticker to Update Lines ---
-    const update = () => {
-      if (!svgRef.current) return; // Guard clause for cleanup
-      for (const node of nodes) {
-        node.el.setAttribute("cx", node.data.x.toString());
-        node.el.setAttribute("cy", node.data.y.toString());
-      }
-      for (const line of lines) {
-        const nodeA = nodes[line.nodeAIndex].data;
-        const nodeB = nodes[line.nodeBIndex].data;
-        line.el.setAttribute("x1", nodeA.x.toString());
-        line.el.setAttribute("y1", nodeA.y.toString());
-        line.el.setAttribute("x2", nodeB.x.toString());
-        line.el.setAttribute("y2", nodeB.y.toString());
-      }
-      animationFrameRef.current = requestAnimationFrame(update);
-    };
-    update();
-
-    // --- Handle Resize ---
-    const handleResize = () => {
-      if (!svgRef.current) return;
-      width = window.innerWidth;
-      height = window.innerHeight;
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-      for (const node of nodes) {
-        gsap.to(node.data, {
+
+      // --- Create SVG Defs (Filter definition, but not applied to elements) ---
+      const defs = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "defs"
+      );
+      defs.innerHTML = `
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      `;
+      svg.appendChild(defs);
+
+      // --- Create Nodes ---
+      for (let i = 0; i < nodeCount; i++) {
+        const circle = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "circle"
+        );
+        const data = {
           x: Math.random() * width,
           y: Math.random() * height,
-          duration: 10,
-          ease: "power1.out",
+          radius: Math.random() * 2 + 1.5, // Slightly smaller
+        };
+        circle.setAttribute("cx", data.x.toString());
+        circle.setAttribute("cy", data.y.toString());
+        circle.setAttribute("r", data.radius.toString());
+        circle.setAttribute("fill", "#a78bfa");
+
+        // OPTIMIZATION: Removed SVG filter, added CSS class
+        circle.classList.add("hero-glow-node");
+        svg.appendChild(circle);
+        nodes.push({ el: circle, data });
+      }
+
+      // --- Create Lines ---
+      for (let i = 0; i < lineCount; i++) {
+        const line = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line"
+        );
+        let nodeAIndex = Math.floor(Math.random() * nodeCount);
+        let nodeBIndex = Math.floor(Math.random() * nodeCount);
+
+        // Ensure nodes are different
+        while (nodeAIndex === nodeBIndex) {
+          nodeBIndex = Math.floor(Math.random() * nodeCount);
+        }
+
+        const nodeA = nodes[nodeAIndex].data;
+        const nodeB = nodes[nodeBIndex].data;
+
+        line.setAttribute("x1", nodeA.x.toString());
+        line.setAttribute("y1", nodeA.y.toString());
+        line.setAttribute("x2", nodeB.x.toString());
+        line.setAttribute("y2", nodeB.y.toString());
+        line.setAttribute("stroke", "#a78bfa");
+        line.setAttribute("stroke-width", "0.5");
+        line.setAttribute("opacity", "0.3");
+
+        // OPTIMIZATION: Removed SVG filter, added CSS class
+        line.classList.add("hero-glow-line");
+        svg.prepend(line);
+        lines.push({ el: line, nodeAIndex, nodeBIndex });
+
+        // Line opacity animation (low-cost)
+        gsap.to(line, {
+          opacity: Math.random() * 0.4 + 0.1,
+          duration: Math.random() * 3 + 1,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: Math.random() * 2,
         });
       }
-    };
-    window.addEventListener("resize", handleResize);
 
-    // --- Cleanup ---
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-      gsap.globalTimeline.clear(); // Clear all GSAP animations
-      if (svg) svg.innerHTML = ""; // Clear SVG content
-    };
+      // --- OPTIMIZATION: Animate nodes and update lines in ONE place ---
+      nodes.forEach((node, index) => {
+        // We need to store the onUpdate function to re-use it after resize
+        const onUpdate = () => {
+          // 1. Update the node's own position
+          node.el.setAttribute("cx", node.data.x.toString());
+          node.el.setAttribute("cy", node.data.y.toString());
+
+          // 2. Find and update all lines connected to this node
+          for (const line of lines) {
+            if (line.nodeAIndex === index) {
+              line.el.setAttribute("x1", node.data.x.toString());
+              line.el.setAttribute("y1", node.data.y.toString());
+            }
+            if (line.nodeBIndex === index) {
+              line.el.setAttribute("x2", node.data.x.toString());
+              line.el.setAttribute("y2", node.data.y.toString());
+            }
+          }
+        };
+        
+        // Store the onUpdate function on the element object for later
+        node.el.onUpdate = onUpdate;
+
+        gsap.to(node.data, {
+          x: () => Math.random() * width,
+          y: () => Math.random() * height,
+          duration: () => Math.random() * 20 + 15,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          onUpdate: onUpdate,
+        });
+      });
+
+      // --- Handle Resize ---
+      const handleResize = () => {
+        if (!svgRef.current) return;
+        width = window.innerWidth;
+        height = window.innerHeight;
+        svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+        // Stop old tweens
+        gsap.killTweensOf(nodes.map(n => n.data)); 
+
+        nodes.forEach((node) => {
+          gsap.to(node.data, {
+            x: () => Math.random() * width,
+            y: () => Math.random() * height,
+            duration: 5, // Shorter duration to adapt to new size
+            ease: "power1.out",
+            // After adapting, restart the main animation
+            onComplete: () => {
+              gsap.to(node.data, {
+                x: () => Math.random() * width,
+                y: () => Math.random() * height,
+                duration: () => Math.random() * 20 + 15,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                onUpdate: node.el.onUpdate // Re-use the onUpdate logic
+              });
+            }
+          });
+        });
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      // --- Cleanup ---
+      return () => {
+        window.removeEventListener("resize", handleResize);
+        // ctx.revert() will be called automatically
+      };
+    }, svgRef); // Scope the context to the SVG element
+
+    // Return the cleanup function from the context
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -165,7 +201,7 @@ function AnimatedBackground() {
 }
 
 //=================================================================
-// 2. CUSTOM COUNTUP COMPONENT (Replaces react-countup)
+// 2. CUSTOM COUNTUP COMPONENT (Unchanged)
 //=================================================================
 interface CustomCountUpProps {
   end: number;
@@ -175,48 +211,42 @@ interface CustomCountUpProps {
 
 /**
  * A custom CountUp component using GSAP and IntersectionObserver
- * to replace the external 'react-countup' library.
  */
 function CustomCountUp({ end, suffix, duration = 3 }: CustomCountUpProps) {
   const spanRef = useRef<HTMLSpanElement>(null);
-  const hasAnimated = useRef(false); // Ensures animation only runs once
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
     const node = spanRef.current;
     if (!node) return;
 
-    // Use IntersectionObserver to trigger animation on scroll
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        // Check if element is in view and has not animated yet
         if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true; // Mark as animated
+          hasAnimated.current = true;
 
-          // Create a proxy object for GSAP to animate
           let proxy = { val: 0 };
           gsap.to(proxy, {
             val: end,
             duration: duration,
             ease: "power3.out",
             onUpdate: () => {
-              // Update the DOM element's text content on each frame
               if (spanRef.current) {
                 spanRef.current.textContent = `${Math.round(proxy.val)}${suffix}`;
               }
             },
             onComplete: () => {
-              // Ensure final value is exact
               if (spanRef.current) {
                 spanRef.current.textContent = `${end}${suffix}`;
               }
             },
           });
-          observer.disconnect(); // Stop observing after animation
+          observer.disconnect();
         }
       },
       {
-        threshold: 0.5, // Trigger when 50% of the element is visible
+        threshold: 0.5,
       }
     );
 
@@ -227,12 +257,11 @@ function CustomCountUp({ end, suffix, duration = 3 }: CustomCountUpProps) {
     };
   }, [end, suffix, duration]);
 
-  // Start by displaying 0 and the suffix
   return <span ref={spanRef}>0{suffix}</span>;
 }
 
 //=================================================================
-// 3. HERO COMPONENT (Main Export)
+// 3. HERO COMPONENT (Main Export - Unchanged)
 //=================================================================
 export function Hero() {
   const stats = [
@@ -244,9 +273,9 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Animated background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-size:4rem_4rem" />
 
-      {/* GSAP Animated Background (Now defined in this file) */}
+      {/* GSAP Animated Background (Now Optimized) */}
       <AnimatedBackground />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -271,7 +300,7 @@ export function Hero() {
             className="text-5xl md:text-7xl lg:text-8xl font-display font-black mb-6 text-balance leading-tight"
           >
             <span className="text-white">Building the </span>
-            <span className="glow-purple bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-purple-500 to-violet-500">
+            <span className="glow-purple bg-clip-text text-transparent bg-linear-to-r from-purple-400 via-purple-500 to-violet-500">
               Future
             </span>
             <br />
@@ -330,7 +359,6 @@ export function Hero() {
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">
-                  {/* Replaced CountUp with our new CustomCountUp */}
                   <CustomCountUp
                     end={stat.end}
                     suffix={stat.suffix}
