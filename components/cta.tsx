@@ -4,149 +4,182 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useRef } from "react" // Added for background
-import { gsap } from "gsap" // Added for background
+import { useEffect, useRef } from "react" // Used by AnimatedBackground
+import { gsap } from "gsap" // Used by AnimatedBackground
 
 //=================================================================
-// 1. ANIMATED BACKGROUND COMPONENT (Merged)
-// This is the same component from Hero.tsx
+// 1. ANIMATED BACKGROUND COMPONENT (OPTIMIZED)
+// This is the fast version that fixes the lag.
 //=================================================================
 function AnimatedBackground() {
   const svgRef = useRef<SVGSVGElement>(null);
-  const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
 
-    const nodes: any[] = [];
-    const lines: any[] = [];
-    const nodeCount = 30;
-    const lineCount = 40;
-    let width = window.innerWidth;
-    let height = window.innerHeight;
+    // Use gsap.context() for scoping and cleanup.
+    let ctx = gsap.context(() => {
+      // Reduced element count for performance
+      const nodeCount = 15;
+      const lineCount = 20;
+      let width = window.innerWidth;
+      let height = window.innerHeight;
 
-    // FIX: Set the correct viewBox immediately on the client
-    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      const nodes: any[] = [];
+      const lines: any[] = [];
 
-    // --- Create SVG Glow Filter ---
-    const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-    defs.innerHTML = `
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
-        <feMerge>
-          <feMergeNode in="coloredBlur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    `;
-    svg.appendChild(defs);
-
-    // --- Create Nodes ---
-    for (let i = 0; i < nodeCount; i++) {
-      const circle = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "circle"
-      );
-      const data = {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() * 3 + 2,
-      };
-      circle.setAttribute("cx", data.x.toString());
-      circle.setAttribute("cy", data.y.toString());
-      circle.setAttribute("r", data.radius.toString());
-      circle.setAttribute("fill", "#a78bfa");
-      circle.setAttribute("filter", "url(#glow)");
-      svg.appendChild(circle);
-      nodes.push({ el: circle, data });
-
-      // Animate node position
-      gsap.to(data, {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        duration: Math.random() * 20 + 15,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }
-
-    // --- Create Lines ---
-    for (let i = 0; i < lineCount; i++) {
-      const line = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "line"
-      );
-      const nodeAIndex = Math.floor(Math.random() * nodeCount);
-      const nodeBIndex = Math.floor(Math.random() * nodeCount);
-      line.setAttribute("x1", nodes[nodeAIndex].data.x.toString());
-      line.setAttribute("y1", nodes[nodeAIndex].data.y.toString());
-      line.setAttribute("x2", nodes[nodeBIndex].data.x.toString());
-      line.setAttribute("y2", nodes[nodeBIndex].data.y.toString());
-      line.setAttribute("stroke", "#a78bfa");
-      line.setAttribute("stroke-width", "0.5");
-      line.setAttribute("opacity", "0.3");
-      line.setAttribute("filter", "url(#glow)");
-      svg.prepend(line);
-      lines.push({ el: line, nodeAIndex, nodeBIndex });
-
-      // Animate line opacity
-      gsap.to(line, {
-        opacity: Math.random() * 0.4 + 0.1,
-        duration: Math.random() * 3 + 1,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: Math.random() * 2,
-      });
-    }
-
-    // --- Ticker to Update Lines ---
-    const update = () => {
-      if (!svgRef.current) return; // Guard clause for cleanup
-      for (const node of nodes) {
-        node.el.setAttribute("cx", node.data.x.toString());
-        node.el.setAttribute("cy", node.data.y.toString());
-      }
-      for (const line of lines) {
-        const nodeA = nodes[line.nodeAIndex].data;
-        const nodeB = nodes[line.nodeBIndex].data;
-        line.el.setAttribute("x1", nodeA.x.toString());
-        line.el.setAttribute("y1", nodeA.y.toString());
-        line.el.setAttribute("x2", nodeB.x.toString());
-        line.el.setAttribute("y2", nodeB.y.toString());
-      }
-      animationFrameRef.current = requestAnimationFrame(update);
-    };
-    update();
-
-    // --- Handle Resize ---
-    const handleResize = () => {
-      if (!svgRef.current) return;
-      width = window.innerWidth;
-      height = window.innerHeight;
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-      for (const node of nodes) {
-        gsap.to(node.data, {
+
+      // --- Create SVG Defs (Filter definition, but not applied to elements) ---
+      const defs = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "defs"
+      );
+      defs.innerHTML = `
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      `;
+      svg.appendChild(defs);
+
+      // --- Create Nodes ---
+      for (let i = 0; i < nodeCount; i++) {
+        const circle = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "circle"
+        );
+        const data = {
           x: Math.random() * width,
           y: Math.random() * height,
-          duration: 10,
-          ease: "power1.out",
+          radius: Math.random() * 2 + 1.5,
+        };
+        circle.setAttribute("cx", data.x.toString());
+        circle.setAttribute("cy", data.y.toString());
+        circle.setAttribute("r", data.radius.toString());
+        circle.setAttribute("fill", "#a78bfa");
+
+        // OPTIMIZATION: Removed SVG filter, added CSS class
+        circle.classList.add("hero-glow-node");
+        svg.appendChild(circle);
+        nodes.push({ el: circle, data });
+      }
+
+      // --- Create Lines ---
+      for (let i = 0; i < lineCount; i++) {
+        const line = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line"
+        );
+        let nodeAIndex = Math.floor(Math.random() * nodeCount);
+        let nodeBIndex = Math.floor(Math.random() * nodeCount);
+
+        // Ensure nodes are different
+        while (nodeAIndex === nodeBIndex) {
+          nodeBIndex = Math.floor(Math.random() * nodeCount);
+        }
+
+        const nodeA = nodes[nodeAIndex].data;
+        const nodeB = nodes[nodeBIndex].data;
+
+        line.setAttribute("x1", nodeA.x.toString());
+        line.setAttribute("y1", nodeA.y.toString());
+        line.setAttribute("x2", nodeB.x.toString());
+        line.setAttribute("y2", nodeB.y.toString());
+        line.setAttribute("stroke", "#a78bfa");
+        line.setAttribute("stroke-width", "0.5");
+        line.setAttribute("opacity", "0.3");
+
+        // OPTIMIZATION: Removed SVG filter, added CSS class
+        line.classList.add("hero-glow-line");
+        svg.prepend(line);
+        lines.push({ el: line, nodeAIndex, nodeBIndex });
+
+        // Line opacity animation (low-cost)
+        gsap.to(line, {
+          opacity: Math.random() * 0.4 + 0.1,
+          duration: Math.random() * 3 + 1,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: Math.random() * 2,
         });
       }
-    };
-    window.addEventListener("resize", handleResize);
 
-    // --- Cleanup ---
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-      gsap.globalTimeline.clear(); // Clear all GSAP animations
-      if (svg) svg.innerHTML = ""; // Clear SVG content
-    };
+      // --- OPTIMIZATION: Animate nodes and update lines in ONE place ---
+      nodes.forEach((node, index) => {
+        const onUpdate = () => {
+          node.el.setAttribute("cx", node.data.x.toString());
+          node.el.setAttribute("cy", node.data.y.toString());
+          for (const line of lines) {
+            if (line.nodeAIndex === index) {
+              line.el.setAttribute("x1", node.data.x.toString());
+              line.el.setAttribute("y1", node.data.y.toString());
+            }
+            if (line.nodeBIndex === index) {
+              line.el.setAttribute("x2", node.data.x.toString());
+              line.el.setAttribute("y2", node.data.y.toString());
+            }
+          }
+        };
+        
+        node.el.onUpdate = onUpdate; // Store for resize
+
+        gsap.to(node.data, {
+          x: () => Math.random() * width,
+          y: () => Math.random() * height,
+          duration: () => Math.random() * 20 + 15,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          onUpdate: onUpdate,
+        });
+      });
+
+      // --- Handle Resize ---
+      const handleResize = () => {
+        if (!svgRef.current) return;
+        width = window.innerWidth;
+        height = window.innerHeight;
+        svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+        gsap.killTweensOf(nodes.map(n => n.data)); 
+
+        nodes.forEach((node) => {
+          gsap.to(node.data, {
+            x: () => Math.random() * width,
+            y: () => Math.random() * height,
+            duration: 5,
+            ease: "power1.out",
+            onComplete: () => {
+              gsap.to(node.data, {
+                x: () => Math.random() * width,
+                y: () => Math.random() * height,
+                duration: () => Math.random() * 20 + 15,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                onUpdate: node.el.onUpdate
+              });
+            }
+          });
+        });
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      // --- Cleanup ---
+      return () => {
+        window.removeEventListener("resize", handleResize);
+        // ctx.revert() is called automatically
+      };
+    }, svgRef); // Scope the context to the SVG element
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -163,6 +196,7 @@ function AnimatedBackground() {
 
 //=================================================================
 // 2. CTA COMPONENT (Main Export)
+// This is your original component, unchanged.
 //=================================================================
 export function CTA() {
   return (
@@ -171,13 +205,10 @@ export function CTA() {
       {/* --- ADDED ANIMATIONS --- */}
       {/* Animated background grid (from Hero) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      {/* GSAP Animated Background (from Hero) */}
+      
+      {/* GSAP Animated Background (Now Optimized) */}
       <AnimatedBackground />
       {/* --- END OF ADDED ANIMATIONS --- */}
-
-      {/* I removed this line, as it would conflict with the Hero animations:
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#9333ea20_0%,transparent_65%)]" />
-      */}
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div

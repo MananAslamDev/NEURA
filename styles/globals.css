@@ -123,3 +123,24 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Add this to your globals.css or main stylesheet */
+
+.hero-glow-node,
+.hero-glow-line {
+  /* This CSS filter is much faster than the SVG feGaussianBlur.
+    You can tweak the color (#a78bfa) and blur radius (4px) 
+    to match your desired look.
+  */
+  filter: drop-shadow(0 0 4px #a78bfa) drop-shadow(0 0 2px #a78bfa);
+
+  /* This hints to the browser that these properties will change,
+    which can help optimize rendering.
+  */
+  will-change: filter, transform, opacity;
+}
+
+.hero-glow-line {
+  /* Lines can have a slightly softer glow */
+  filter: drop-shadow(0 0 3px #a78bfa);
+}
