@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -224,20 +224,20 @@ export function CTA() {
             <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-violet-500/30 rounded-full blur-3xl" />
 
             <div className="relative z-10">
-              <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 text-balance">
-                Ready to Build Something <span className="text-purple-400">Amazing?</span>
+              <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-6 text-balance">
+                Ready to Automate your <span className="text-purple-400">Front Desk?</span>
               </h2>
 
-              <p className="text-lg text-white/70 mb-10 max-w-2xl mx-auto text-balance leading-relaxed">
-                Let's discuss your project and create a digital experience that exceeds expectations. Get in touch
-                today.
+              <p className="text-lg text-foreground/70 mb-10 max-w-2xl mx-auto text-balance leading-relaxed">
+                Let's discuss your business needs and deploy an AI voice receptionist that exceeds expectations. Get in touch
+                today and never miss a lead again.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/contact">
                   <Button
                     size="lg"
-                    className="bg-white text-black hover:bg-white/90 font-semibold text-base px-8 py-6 group"
+                    className="bg-foreground text-background hover:bg-foreground/90 dark:bg-white/90 font-semibold text-base px-8 py-6 group"
                   >
                     Start Your Project
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
@@ -247,7 +247,7 @@ export function CTA() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-white/20 text-white hover:bg-white/10 font-semibold text-base px-8 py-6 bg-transparent"
+                    className="border-border text-foreground hover:bg-foreground/10 dark:bg-white/10 font-semibold text-base px-8 py-6 bg-transparent"
                   >
                     Schedule a Call
                   </Button>

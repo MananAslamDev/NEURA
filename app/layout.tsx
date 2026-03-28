@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Poppins, Outfit } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 
 const poppins = Poppins({
@@ -18,8 +20,8 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: "NEURA - Neural. Digital. Different.",
-  description: "Premium web development agency crafting futuristic digital experiences",
+  title: "NEURA - Advanced AI Voice Agents",
+  description: "24/7 AI Voice Receptionist Agents for Modern Businesses",
   generator: "v0.app",
 }
 
@@ -29,12 +31,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable} ${outfit.variable} font-sans antialiased`}>
-        <Suspense fallback={<div>Loading...</div>}>
-          {children}
-          <Analytics />
-        </Suspense>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Suspense fallback={<div>Loading...</div>}>
+            {children}
+            <Analytics />
+            <Toaster position="bottom-right" />
+          </Suspense>
+        </ThemeProvider>
       </body>
     </html>
   )

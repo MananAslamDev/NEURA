@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { motion } from "framer-motion"
 import { Lightbulb, Pencil, Code, Rocket } from "lucide-react"
@@ -41,10 +41,10 @@ export function Process() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-4 text-balance">
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4 text-balance">
             Our <span className="text-purple-500">Process</span>
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto text-balance">
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto text-balance">
             A proven methodology that delivers exceptional results every time
           </p>
         </motion.div>
@@ -64,16 +64,16 @@ export function Process() {
                 <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-purple-500/50 to-transparent" />
               )}
 
-              <div className="relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all duration-300">
+              <div className="relative p-8 rounded-2xl bg-foreground/5 dark:bg-white/5 border border-border hover:border-purple-500/50 transition-all duration-300">
                 <div className="text-6xl font-display font-black text-purple-500/20 mb-4">{step.number}</div>
 
                 <div className="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-6">
                   <step.icon className="text-purple-400" size={28} />
                 </div>
 
-                <h3 className="text-xl font-display font-bold text-white mb-3">{step.title}</h3>
+                <h3 className="text-xl font-display font-bold text-foreground mb-3">{step.title}</h3>
 
-                <p className="text-white/60 leading-relaxed text-sm">{step.description}</p>
+                <p className="text-foreground/60 leading-relaxed text-sm">{step.description}</p>
               </div>
             </motion.div>
           ))}

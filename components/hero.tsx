@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { gsap } from "gsap"; // Import GSAP for all components
+import Link from "next/link";
 
 //=================================================================
 // 1. ANIMATED BACKGROUND COMPONENT (OPTIMIZED)
@@ -129,7 +130,7 @@ function AnimatedBackground() {
             }
           }
         };
-        
+
         // Store the onUpdate function on the element object for later
         node.el.onUpdate = onUpdate;
 
@@ -152,7 +153,7 @@ function AnimatedBackground() {
         svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
 
         // Stop old tweens
-        gsap.killTweensOf(nodes.map(n => n.data)); 
+        gsap.killTweensOf(nodes.map(n => n.data));
 
         nodes.forEach((node) => {
           gsap.to(node.data, {
@@ -265,15 +266,18 @@ function CustomCountUp({ end, suffix, duration = 3 }: CustomCountUpProps) {
 //=================================================================
 export function Hero() {
   const stats = [
-    { end: 150, suffix: "+", label: "Projects Delivered" },
-    { end: 98, suffix: "%", label: "Client Satisfaction" },
-    { end: 50, suffix: "+", label: "Global Clients" },
+    { end: 10, suffix: "k+", label: "Calls Handled" },
+    { end: 99, suffix: "%", label: "Query Resolution" },
+    { end: 500, suffix: "ms", label: "Response Latency" },
   ];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Rich Radial Gradient Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/60 via-background to-background pointer-events-none z-0" />
+      
       {/* Animated background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-size:4rem_4rem" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8b5cf615_1px,transparent_1px),linear-gradient(to_bottom,#8b5cf615_1px,transparent_1px)] bg-size:4rem_4rem z-0" />
 
       {/* GSAP Animated Background (Now Optimized) */}
       <AnimatedBackground />
@@ -297,14 +301,13 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-display font-black mb-6 text-balance leading-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-display font-black mb-4 text-balance leading-tight"
           >
-            <span className="text-white">Building the </span>
+            <span className="text-foreground">Smarter </span>
             <span className="glow-purple bg-clip-text text-transparent bg-linear-to-r from-purple-400 via-purple-500 to-violet-500">
-              Future
+              Voice
             </span>
-            <br />
-            <span className="text-white">of Digital</span>
+            <span className="text-foreground"> Agents</span>
           </motion.h1>
 
           {/* Description */}
@@ -312,11 +315,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-white/60 mb-10 max-w-3xl mx-auto text-balance leading-relaxed"
+            className="text-lg md:text-xl text-foreground/60 mb-10 max-w-2xl mx-auto text-balance leading-relaxed"
           >
-            We craft premium digital experiences that merge cutting-edge
-            technology with stunning design. Transform your vision into reality
-            with NEURA.
+            We deploy intelligent, low-latency AI agents that can seamlessly handle calls, schedule appointments, and coordinate your digital workflows.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -326,27 +327,31 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button
-              size="lg"
-              className="bg-white text-black hover:bg-white/90 font-semibold text-base px-8 py-6 group"
-            >
-              Start Your Project
-              <ArrowRight
-                className="ml-2 group-hover:translate-x-1 transition-transform"
-                size={20}
-              />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white/20 text-white hover:bg-white/10 font-semibold text-base px-8 py-6 group bg-transparent"
-            >
-              <Play
-                className="mr-2 group-hover:scale-110 transition-transform"
-                size={20}
-              />
-              Watch Demo
-            </Button>
+            <Link href="/contact">
+              <Button
+                size="lg"
+                className="bg-foreground text-background hover:bg-foreground/90 dark:bg-white/90 font-semibold text-base px-8 py-6 group"
+              >
+                Start Your Project
+                <ArrowRight
+                  className="ml-2 group-hover:translate-x-1 transition-transform"
+                  size={20}
+                />
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-border text-foreground hover:bg-foreground/10 dark:bg-white/10 font-semibold text-base px-8 py-6 group bg-transparent"
+              >
+                <Play
+                  className="mr-2 group-hover:scale-110 transition-transform"
+                  size={20}
+                />
+                Watch Demo
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Stats */}
@@ -358,14 +363,14 @@ export function Hero() {
           >
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">
+                <div className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">
                   <CustomCountUp
                     end={stat.end}
                     suffix={stat.suffix}
                     duration={3}
                   />
                 </div>
-                <div className="text-sm text-white/50">{stat.label}</div>
+                <div className="text-sm text-foreground/50">{stat.label}</div>
               </div>
             ))}
           </motion.div>

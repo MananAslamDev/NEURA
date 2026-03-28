@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -36,7 +37,7 @@ export function Header() {
         // --- THIS IS THE FIX ---
         // Apply glass effect if scrolled OR mobile menu is open
         (isScrolled || isMobileMenuOpen)
-          ? "bg-black/70 backdrop-blur-xl border-b border-white/10"
+          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-sm dark:shadow-none"
           : "bg-transparent"
         // --- END OF FIX ---
       }`}
@@ -45,7 +46,7 @@ export function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.05 }}>
-            <Link href="/" className="text-2xl font-display font-black tracking-tighter text-white">
+            <Link href="/" className="text-2xl font-display font-black tracking-tighter text-foreground">
               <span className="glow-purple">NEURA</span>
             </Link>
           </motion.div>
@@ -57,7 +58,7 @@ export function Header() {
                 key={item.label}
                 href={item.href}
                 className={`text-sm font-medium transition-colors ${
-                  pathname === item.href ? "text-white" : "text-white/70 hover:text-white"
+                  pathname === item.href ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {item.label}
@@ -65,19 +66,23 @@ export function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Actions: Theme Toggle + CTA Button */}
+          <div className="hidden md:flex items-center gap-4">
+            <ThemeToggle />
             <Link href="/contact">
-              <Button className="bg-white text-black hover:bg-white/90 font-semibold" size="lg">
+              <Button className="font-semibold" size="lg">
                 Get Started
               </Button>
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button className="md:hidden text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Button & Mobile Theme Toggle */}
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button className="text-foreground p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -94,7 +99,7 @@ export function Header() {
                   key={item.label}
                   href={item.href}
                   className={`text-sm font-medium transition-colors ${
-                    pathname === item.href ? "text-white" : "text-white/70 hover:text-white"
+                    pathname === item.href ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -102,7 +107,7 @@ export function Header() {
                 </Link>
               ))}
               <Link href="/contact">
-                <Button className="bg-white text-black hover:bg-white/90 font-semibold w-full">Get Started</Button>
+                <Button className="font-semibold w-full">Get Started</Button>
               </Link>
             </nav>
           </motion.div>

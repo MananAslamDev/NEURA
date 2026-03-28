@@ -1,38 +1,38 @@
-"use client"
+﻿"use client"
 
 import { motion } from "framer-motion"
-import { Code2, Palette, Rocket, Smartphone, Globe, Zap } from "lucide-react"
+import { PhoneCall, Calendar, Mail, MessageCircle, Table, Bot } from "lucide-react"
 
 const services = [
   {
-    icon: Code2,
-    title: "Web Development",
-    description: "Custom web applications built with cutting-edge technologies and best practices.",
+    icon: PhoneCall,
+    title: "Smart Call Handling",
+    description: "Answers your business phone natively with a human-like voice, 24/7.",
   },
   {
-    icon: Palette,
-    title: "UI/UX Design",
-    description: "Beautiful, intuitive interfaces that users love and remember.",
+    icon: Calendar,
+    title: "Calendar Booking",
+    description: "Integrates perfectly to schedule, reschedule, or cancel appointments.",
   },
   {
-    icon: Smartphone,
-    title: "Mobile Apps",
-    description: "Native and cross-platform mobile solutions for iOS and Android.",
+    icon: Mail,
+    title: "Automated Emails",
+    description: "Sends instant email confirmations and follow-ups right after calls.",
   },
   {
-    icon: Globe,
-    title: "E-Commerce",
-    description: "Scalable online stores that drive conversions and revenue.",
+    icon: MessageCircle,
+    title: "WhatsApp Triggers",
+    description: "Sends automated WhatsApp texts for immediate customer engagement.",
   },
   {
-    icon: Zap,
-    title: "Performance",
-    description: "Lightning-fast websites optimized for speed and SEO.",
+    icon: Table,
+    title: "CRM Magic",
+    description: "Logs caller details and transcripts automatically into Google Sheets.",
   },
   {
-    icon: Rocket,
-    title: "Consulting",
-    description: "Strategic guidance to accelerate your digital transformation.",
+    icon: Bot,
+    title: "Intelligent FAQs",
+    description: "Understands context and flawlessly answers your business's generic questions.",
   },
 ]
 
@@ -49,11 +49,11 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-4 text-balance">
-            What We <span className="text-purple-500">Create</span>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4 text-balance">
+            What Our <span className="text-purple-500">AI</span> Does
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto text-balance">
-            Full-spectrum digital solutions tailored to your unique needs
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto text-balance">
+            Full-spectrum automated communication for your front desk
           </p>
         </motion.div>
 
@@ -68,7 +68,7 @@ export function Services() {
               whileHover={{ y: -8, transition: { duration: 0.2 } }}
               className="group relative"
             >
-              <div className="relative p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300">
+              <div className="relative p-8 rounded-2xl bg-foreground/5 dark:bg-white/5 border border-border backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300">
                 {/* Glow effect on hover */}
                 <div className="absolute inset-0 rounded-2xl bg-purple-500/0 group-hover:bg-purple-500/5 transition-all duration-300" />
 
@@ -77,9 +77,9 @@ export function Services() {
                     <service.icon className="text-purple-400" size={28} />
                   </div>
 
-                  <h3 className="text-xl font-display font-bold text-white mb-3">{service.title}</h3>
+                  <h3 className="text-xl font-display font-bold text-foreground mb-3">{service.title}</h3>
 
-                  <p className="text-white/60 leading-relaxed">{service.description}</p>
+                  <p className="text-foreground/60 leading-relaxed">{service.description}</p>
                 </div>
               </div>
             </motion.div>

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Github, Twitter, Linkedin, Mail } from "lucide-react"
+import { toast } from "sonner"
 
 export function Footer() {
   const footerLinks = {
@@ -18,7 +19,7 @@ export function Footer() {
   ]
 
   return (
-    <footer className="relative border-t border-white/10 bg-black">
+    <footer className="relative border-t border-border bg-background">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
@@ -29,12 +30,12 @@ export function Footer() {
               viewport={{ once: true }}
               className="mb-6"
             >
-              <h3 className="text-3xl font-display font-black text-white glow-purple mb-4">NEURA</h3>
-              <p className="text-white/60 leading-relaxed max-w-sm">
-                Neural. Digital. Different.
+              <h3 className="text-3xl font-display font-black text-foreground glow-purple mb-4">NEURA</h3>
+              <p className="text-foreground/60 leading-relaxed max-w-sm">
+                Intelligent. Automated. Always On.
                 <br />
                 <br />
-                Crafting premium digital experiences that push the boundaries of what's possible.
+                Crafting intelligent AI voice receptionists that automate your front desk round the clock.
               </p>
             </motion.div>
 
@@ -49,10 +50,10 @@ export function Footer() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.1 }}
-                  className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:border-purple-500/50 flex items-center justify-center transition-all duration-300"
+                  className="w-10 h-10 rounded-lg bg-foreground/5 dark:bg-white/5 border border-border hover:border-purple-500/50 flex items-center justify-center transition-all duration-300"
                   aria-label={social.label}
                 >
-                  <social.icon size={18} className="text-white/70" />
+                  <social.icon size={18} className="text-foreground/70" />
                 </motion.a>
               ))}
             </div>
@@ -67,13 +68,13 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ delay: categoryIndex * 0.1 }}
             >
-              <h4 className="text-white font-semibold mb-4">{category}</h4>
+              <h4 className="text-foreground font-semibold mb-4">{category}</h4>
               <ul className="space-y-3">
                 {links.map((link, index) => (
                   <li key={index}>
-                    <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
+                    <button onClick={(e) => { e.preventDefault(); toast.info(`Opening ${link} (Coming Soon)`); }} className="text-foreground/60 hover:text-foreground transition-colors text-sm cursor-pointer">
                       {link}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -86,10 +87,10 @@ export function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4"
+          className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4"
         >
-          <p className="text-white/50 text-sm">© {new Date().getFullYear()} NEURA. All rights reserved.</p>
-          <p className="text-white/50 text-sm">Built with precision and passion</p>
+          <p className="text-foreground/50 text-sm">Â© {new Date().getFullYear()} NEURA. All rights reserved.</p>
+          <p className="text-foreground/50 text-sm">Built with precision and passion</p>
         </motion.div>
       </div>
     </footer>

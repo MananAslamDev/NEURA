@@ -1,13 +1,13 @@
-"use client"
+﻿"use client"
 
 import { motion } from "framer-motion"
 import { CheckCircle2 } from "lucide-react"
 
 const features = [
-  "Cutting-edge technology stack",
-  "Agile development methodology",
-  "Dedicated project management",
-  "Post-launch support & maintenance",
+  "Conversational, human-like voice AI",
+  "Zero wait times and multiline answering",
+  "Instant, hands-free CRM synchronization",
+  "Deep integration with global calendars",
 ]
 
 export function About() {
@@ -22,14 +22,13 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 text-balance">
-              We Turn Ideas Into <span className="text-purple-500">Digital Reality</span>
+            <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-6 text-balance">
+              We Automate Your <span className="text-purple-500">Front Desk</span>
             </h2>
 
-            <p className="text-lg text-white/60 mb-8 leading-relaxed">
-              NEURA is a premium web development agency specializing in creating exceptional digital experiences. We
-              combine strategic thinking, stunning design, and robust engineering to deliver solutions that drive real
-              business results.
+            <p className="text-lg text-foreground/60 mb-8 leading-relaxed">
+              NEURA is an advanced AI agency specializing in crafting intelligent voice receptionists.
+              We combine natural language understanding, real-time fetching, and robust system integrations to deliver AI agents that drive real business results and save you thousands of hours.
             </p>
 
             <div className="space-y-4 mb-8">
@@ -43,7 +42,7 @@ export function About() {
                   className="flex items-center gap-3"
                 >
                   <CheckCircle2 className="text-purple-500 flex-shrink-0" size={24} />
-                  <span className="text-white/80">{feature}</span>
+                  <span className="text-foreground/80">{feature}</span>
                 </motion.div>
               ))}
             </div>
@@ -55,13 +54,13 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="grid grid-cols-2 gap-6"
             >
-              <div className="p-6 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-3xl font-display font-bold text-white mb-2">8+</div>
-                <div className="text-sm text-white/60">Years Experience</div>
+              <div className="p-6 rounded-xl bg-foreground/5 dark:bg-white/5 border border-border">
+                <div className="text-3xl font-display font-bold text-foreground mb-2">24/7</div>
+                <div className="text-sm text-foreground/60">Uptime Reliability</div>
               </div>
-              <div className="p-6 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-3xl font-display font-bold text-white mb-2">25+</div>
-                <div className="text-sm text-white/60">Team Members</div>
+              <div className="p-6 rounded-xl bg-foreground/5 dark:bg-white/5 border border-border">
+                <div className="text-3xl font-display font-bold text-foreground mb-2">0</div>
+                <div className="text-sm text-foreground/60">Missed Calls</div>
               </div>
             </motion.div>
           </motion.div>
@@ -82,28 +81,28 @@ export function About() {
               <motion.div
                 animate={{ y: [0, -20, 0] }}
                 transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
-                className="absolute top-10 left-10 p-6 rounded-xl bg-black/50 border border-purple-500/30 backdrop-blur-xl"
+                className="absolute top-10 left-10 p-6 rounded-xl bg-background/50 dark:bg-black/50 border border-purple-500/30 backdrop-blur-xl"
               >
-                <div className="text-sm text-purple-400 mb-2">Design</div>
-                <div className="text-2xl font-bold text-white">100%</div>
+                <div className="text-sm text-purple-400 mb-2">Availability</div>
+                <div className="text-2xl font-bold text-foreground">24/7</div>
               </motion.div>
 
               <motion.div
                 animate={{ y: [0, 20, 0] }}
                 transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
-                className="absolute bottom-10 right-10 p-6 rounded-xl bg-black/50 border border-purple-500/30 backdrop-blur-xl"
+                className="absolute bottom-10 right-10 p-6 rounded-xl bg-background/50 dark:bg-black/50 border border-purple-500/30 backdrop-blur-xl"
               >
-                <div className="text-sm text-purple-400 mb-2">Performance</div>
-                <div className="text-2xl font-bold text-white">A+</div>
+                <div className="text-sm text-purple-400 mb-2">Latency</div>
+                <div className="text-2xl font-bold text-foreground">&lt;500ms</div>
               </motion.div>
 
               <motion.div
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, delay: 2 }}
-                className="absolute top-1/2 right-10 p-6 rounded-xl bg-black/50 border border-purple-500/30 backdrop-blur-xl"
+                className="absolute top-1/2 right-10 p-6 rounded-xl bg-background/50 dark:bg-black/50 border border-purple-500/30 backdrop-blur-xl"
               >
-                <div className="text-sm text-purple-400 mb-2">Code Quality</div>
-                <div className="text-2xl font-bold text-white">99%</div>
+                <div className="text-sm text-purple-400 mb-2">Accuracy</div>
+                <div className="text-2xl font-bold text-foreground">99%</div>
               </motion.div>
             </div>
           </motion.div>

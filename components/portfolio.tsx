@@ -2,31 +2,32 @@
 
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
+import { toast } from "sonner"
 
 const projects = [
   {
-    title: "FinTech Dashboard",
-    category: "Web Application",
-    description: "Real-time financial analytics platform",
-    image: "/modern-fintech-dashboard-dark-purple.jpg",
+    title: "Dental Clinic Receptionist",
+    category: "Call Booking & Scheduling",
+    description: "Handles inquiries and schedules appointments",
+    image: "/dental_ai_dashboard.png",
   },
   {
-    title: "E-Commerce Platform",
-    category: "Online Store",
-    description: "Next-gen shopping experience",
-    image: "/luxury-ecommerce-website-dark-theme.jpg",
+    title: "Real Estate Lead Qualifier",
+    category: "CRM Automation",
+    description: "Scores leads and updates Google Sheets CRM",
+    image: "/real_estate_ai.png",
   },
   {
-    title: "SaaS Product",
-    category: "Web Application",
-    description: "Cloud-based project management",
-    image: "/saas-project-management-interface-dark.jpg",
+    title: "E-Commerce Support",
+    category: "Intelligent FAQ Handling",
+    description: "Tracks orders and sends WhatsApp updates",
+    image: "/ecommerce_ai_support.png",
   },
   {
-    title: "Mobile Banking App",
-    category: "Mobile App",
-    description: "Secure digital banking solution",
-    image: "/mobile-banking-app-interface-purple.jpg",
+    title: "Gym Booking Assistant",
+    category: "Mobile Management",
+    description: "Manages class schedules and cancellations",
+    image: "/gym_mobile_ai.png",
   },
 ]
 
@@ -43,11 +44,11 @@ export function Portfolio() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-4 text-balance">
-            Featured <span className="text-purple-500">Work</span>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-4 text-balance">
+            Use Cases / <span className="text-purple-500">Case Studies</span>
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto text-balance">
-            Explore our latest projects and see how we bring visions to life
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto text-balance">
+            Explore how our AI Voice Agents are transforming businesses
           </p>
         </motion.div>
 
@@ -59,9 +60,10 @@ export function Portfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              onClick={() => toast.info("Viewing case study data is currently restricted under client NDA.")}
               className="group relative overflow-hidden rounded-2xl cursor-pointer"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-white/5 border border-white/10">
+              <div className="relative aspect-[4/3] overflow-hidden bg-foreground/5 dark:bg-white/5 border border-border">
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
@@ -69,14 +71,14 @@ export function Portfolio() {
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 dark:via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
 
                 {/* Content */}
                 <div className="absolute inset-0 p-8 flex flex-col justify-end">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <div className="text-sm text-purple-400 mb-2">{project.category}</div>
-                    <h3 className="text-2xl font-display font-bold text-white mb-2">{project.title}</h3>
-                    <p className="text-white/70 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <h3 className="text-2xl font-display font-bold text-foreground mb-2">{project.title}</h3>
+                    <p className="text-foreground/70 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {project.description}
                     </p>
                     <div className="flex items-center gap-2 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
