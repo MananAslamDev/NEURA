@@ -303,11 +303,12 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-display font-black mb-4 text-balance leading-tight"
           >
-            <span className="text-foreground">Smarter </span>
+            <span className="text-foreground">Never Miss </span>
             <span className="glow-purple bg-clip-text text-transparent bg-linear-to-r from-purple-400 via-purple-500 to-violet-500">
-              Voice
+              Another
             </span>
-            <span className="text-foreground"> Agents</span>
+            <br />
+            <span className="text-foreground">Call Again</span>
           </motion.h1>
 
           {/* Description */}
@@ -317,7 +318,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg md:text-xl text-foreground/60 mb-10 max-w-2xl mx-auto text-balance leading-relaxed"
           >
-            We deploy intelligent, low-latency AI agents that can seamlessly handle calls, schedule appointments, and coordinate your digital workflows.
+            Instantly deploy a hyper-realistic AI receptionist that answers calls, books appointments, and captures every lead—day or night.
           </motion.p>
 
           {/* CTA Buttons */}

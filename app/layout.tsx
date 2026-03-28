@@ -23,6 +23,14 @@ export const metadata: Metadata = {
   title: "NEURA - Advanced AI Voice Agents",
   description: "24/7 AI Voice Receptionist Agents for Modern Businesses",
   generator: "v0.app",
+  icons: {
+    icon: [
+      {
+        url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="%239333ea"/><text transform="translate(50 54)" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-weight="900" font-size="65" fill="%23ffffff">N</text></svg>',
+        type: "image/svg+xml",
+      }
+    ]
+  }
 }
 
 export default function RootLayout({
