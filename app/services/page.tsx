@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -12,7 +12,6 @@ const agentTypes = [
     name: "Starter Agent",
     description: "Perfect for answering FAQs and routing basic calls",
     features: ["Human-like answering", "Custom knowledge base", "Call routing", "24/7 Availability", "Transcription logs"],
-    price: "Starting at $499/mo",
     popular: false,
   },
   {
@@ -26,7 +25,6 @@ const agentTypes = [
       "Email confirmations",
       "Cancellation handling",
     ],
-    price: "Starting at $999/mo",
     popular: true,
   },
   {
@@ -40,11 +38,9 @@ const agentTypes = [
       "Priority API limits",
       "Dedicated account manager",
     ],
-    price: "Custom",
     popular: false,
   },
 ]
-
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-background">
@@ -70,7 +66,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Pricing Tiers */}
+      {/* Service Packages */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -88,7 +84,7 @@ export default function ServicesPage() {
                   after:absolute after:inset-0 after:rounded-2xl after:bg-gradient-to-t after:from-background/10 dark:from-black/10 after:to-transparent after:-z-10
                   ${
                     tier.popular
-                      ? "border-purple-500/50 bg-gradient-to-b from-purple-900/20 to-black/50"
+                      ? "border-purple-500/50 bg-gradient-to-b from-purple-500/10 to-transparent dark:from-purple-900/20 dark:to-transparent"
                       : "border-border"
                   } hover:border-purple-500/70 transition-all duration-300`}
               >
@@ -100,10 +96,6 @@ export default function ServicesPage() {
 
                 <h3 className="text-2xl font-display font-bold text-foreground mb-2">{tier.name}</h3>
                 <p className="text-foreground/60 text-sm mb-6 leading-relaxed">{tier.description}</p>
-
-                <div className="mb-6">
-                  <p className="text-3xl font-bold text-foreground">{tier.price}</p>
-                </div>
 
                 <ul className="space-y-3 mb-8">
                   {tier.features.map((feature) => (
