@@ -81,7 +81,7 @@ export function About() {
               <motion.div
                 animate={{ y: [0, -20, 0] }}
                 transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
-                className="absolute top-10 left-10 p-6 rounded-xl bg-background/50 dark:bg-black/50 border border-purple-500/30 backdrop-blur-xl"
+                className="absolute top-10 left-10 p-6 rounded-xl bg-background/50 dark:bg-black/50 border border-purple-500/30 backdrop-blur-md"
               >
                 <div className="text-sm text-purple-400 mb-2">Availability</div>
                 <div className="text-2xl font-bold text-foreground">24/7</div>
@@ -90,7 +90,7 @@ export function About() {
               <motion.div
                 animate={{ y: [0, 20, 0] }}
                 transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
-                className="absolute bottom-10 right-10 p-6 rounded-xl bg-background/50 dark:bg-black/50 border border-purple-500/30 backdrop-blur-xl"
+                className="absolute bottom-10 right-10 p-6 rounded-xl bg-background/50 dark:bg-black/50 border border-purple-500/30 backdrop-blur-md"
               >
                 <div className="text-sm text-purple-400 mb-2">Latency</div>
                 <div className="text-2xl font-bold text-foreground">&lt;500ms</div>
@@ -99,7 +99,7 @@ export function About() {
               <motion.div
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, delay: 2 }}
-                className="absolute top-1/2 right-10 p-6 rounded-xl bg-background/50 dark:bg-black/50 border border-purple-500/30 backdrop-blur-xl"
+                className="absolute top-1/2 right-10 p-6 rounded-xl bg-background/50 dark:bg-black/50 border border-purple-500/30 backdrop-blur-md"
               >
                 <div className="text-sm text-purple-400 mb-2">Accuracy</div>
                 <div className="text-2xl font-bold text-foreground">99%</div>

@@ -37,7 +37,7 @@ export function Header() {
         // --- THIS IS THE FIX ---
         // Apply glass effect if scrolled OR mobile menu is open
         (isScrolled || isMobileMenuOpen)
-          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-sm dark:shadow-none"
+          ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm dark:shadow-none"
           : "bg-transparent"
         // --- END OF FIX ---
       }`}

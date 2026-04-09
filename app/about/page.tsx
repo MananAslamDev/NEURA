@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -7,6 +7,7 @@ import { Zap, Users, Award, Rocket } from "lucide-react"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { AnimatedText } from "@/components/ui/animated-text"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -97,7 +98,7 @@ export default function AboutPage() {
       <Header />
 
       {/* â”€â”€ Hero â”€â”€ */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+      <section className="relative pt-32 pb-16 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-b from-purple-900/20 to-transparent" />
         <div className="container mx-auto relative z-10">
           <motion.div
@@ -106,9 +107,11 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground">
-              About <span className="glow-purple">NEURA</span>
-            </h1>
+            <AnimatedText
+              el="h1"
+              text={<>About <span className="glow-purple">NEURA</span></>}
+              className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground"
+            />
             <p className="text-xl text-foreground/70 leading-relaxed">
               Intelligent. Automated. Always on. We're a team of AI engineers building the future of customer interactions.
             </p>
@@ -117,7 +120,7 @@ export default function AboutPage() {
       </section>
 
       {/* â”€â”€ Story â”€â”€ */}
-      <section className="py-20 px-6">
+      <section className="py-16 px-6">
         <div className="container mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -140,14 +143,14 @@ export default function AboutPage() {
               ensuring that every caller gets a helpful, accurate, and instantaneous response.
             </p>
             <p className="text-foreground font-semibold text-xl">
-              Powered by <span className="glow-purple">NEURA</span> â€” where intelligence meets design.
+              Powered by <span className="glow-purple">NEURA.</span>  where intelligence meets design.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* â”€â”€ Stats â”€â”€ */}
-      <section className="py-20 px-6 border-y border-border">
+      <section className="py-16 px-6 border-y border-border">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
@@ -161,7 +164,7 @@ export default function AboutPage() {
               >
                 {/* glass badge */}
                 <div
-                  className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-foreground/5 dark:bg-white/5 backdrop-blur-xl border border-border shadow-2xl shadow-black/20 mb-4
+                  className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-foreground/5 dark:bg-white/5 backdrop-blur-md border border-border shadow-lg shadow-black/20 mb-4
                     before:absolute before:inset-0 before:rounded-full before:p-px before:bg-linear-to-b before:from-white/20 before:to-transparent before:-z-10
                     after:absolute after:inset-0 after:rounded-full after:bg-linear-to-t after:from-background/10 dark:from-black/10 after:to-transparent after:-z-10
                     hover:border-purple-500/70 transition-all duration-300 relative"
@@ -183,7 +186,7 @@ export default function AboutPage() {
       </section>
 
       {/* â”€â”€ Values â”€â”€ */}
-      <section className="py-20 px-6">
+      <section className="py-16 px-6">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -191,9 +194,11 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-display font-black mb-6 text-foreground">
-              Our <span className="glow-purple">Values</span>
-            </h2>
+            <AnimatedText
+              el="h2"
+              text={<>Our <span className="glow-purple">Values</span></>}
+              className="text-4xl md:text-5xl font-display font-black mb-6 text-foreground"
+            />
             <p className="text-lg text-foreground/70 leading-relaxed">
               The principles that guide everything we do at NEURA
             </p>
@@ -207,8 +212,8 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-2xl border backdrop-blur-xl
-                  bg-foreground/5 dark:bg-white/5 shadow-2xl shadow-black/20
+                className="p-8 rounded-2xl border backdrop-blur-md
+                  bg-foreground/5 dark:bg-white/5 shadow-lg shadow-black/20
                   before:absolute before:inset-0 before:rounded-2xl before:p-px before:bg-linear-to-b before:from-white/20 before:to-transparent before:-z-10
                   after:absolute after:inset-0 after:rounded-2xl after:bg-linear-to-t after:from-background/10 dark:from-black/10 after:to-transparent after:-z-10
                   border-border hover:border-purple-500/70 transition-all duration-300 relative"
@@ -222,7 +227,7 @@ export default function AboutPage() {
       </section>
 
       {/* â”€â”€ Team / Skills â”€â”€ */}
-      <section className="py-20 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -230,9 +235,11 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h2 className="text-4xl md:text-5xl font-display font-black mb-6 text-foreground">
-              Built by <span className="glow-purple">Experts</span>
-            </h2>
+            <AnimatedText
+              el="h2"
+              text={<>Built by <span className="glow-purple">Experts</span></>}
+              className="text-4xl md:text-5xl font-display font-black mb-6 text-foreground"
+            />
             <p className="text-lg text-foreground/70 leading-relaxed mb-8">
               Our team brings together designers, developers, and strategists with expertise in modern web technologies,
               UX design, and digital marketing.
@@ -249,7 +256,7 @@ export default function AboutPage() {
               ].map((skill) => (
                 <span
                   key={skill}
-                  className="px-4 py-2 rounded-full bg-foreground/5 dark:bg-white/5 backdrop-blur-xl border border-border
+                  className="px-4 py-2 rounded-full bg-foreground/5 dark:bg-white/5 backdrop-blur-md border border-border
                     shadow-lg shadow-black/10
                     before:absolute before:inset-0 before:rounded-full before:p-px before:bg-linear-to-b before:from-white/20 before:to-transparent before:-z-10
                     after:absolute after:inset-0 after:rounded-full after:bg-linear-to-t after:from-background/10 dark:from-black/10 after:to-transparent after:-z-10

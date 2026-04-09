@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { AnimatedText } from "@/components/ui/animated-text"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { Mail, Phone, MapPin, MessageCircle, Clock, CalendarCheck, Zap, Globe2 } from "lucide-react"
 import { toast } from "sonner"
@@ -73,9 +74,11 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground text-balance leading-tight">
-              Automate Your <span className="glow-purple">Front Desk</span>
-            </h1>
+            <AnimatedText
+              el="h1"
+              text={<>Automate Your <span className="glow-purple">Front Desk</span></>}
+              className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground text-balance leading-tight"
+            />
             <p className="text-xl text-foreground/70 leading-relaxed mb-10 max-w-2xl mx-auto">
               Ready to stop missing calls and start converting every lead? Get in touch with our team to configure your AI Voice Agent today.
             </p>
@@ -108,7 +111,7 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content Layout */}
-      <section className="py-24 px-6">
+      <section className="py-16 px-6">
         <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-12 gap-16">
             
@@ -120,19 +123,22 @@ export default function ContactPage() {
               className="lg:col-span-5 space-y-8"
             >
               {/* Direct Booking Card */}
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-purple-900/20 to-background border border-purple-500/30 backdrop-blur-xl relative overflow-hidden group">
+              <div className="p-8 rounded-2xl bg-gradient-to-br from-purple-900/20 to-background border border-purple-500/30 backdrop-blur-md relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-32 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all duration-500" />
                 <div className="relative z-10">
                   <div className="w-12 h-12 bg-foreground/10 dark:bg-white/10 rounded-xl border border-border flex items-center justify-center mb-6">
-                    <CalendarCheck className="w-6 h-6 text-purple-400" />
+                    <Phone className="w-6 h-6 text-purple-400" />
                   </div>
-                  <h3 className="text-2xl font-display font-bold text-foreground mb-3">Skip the Form</h3>
+                  <h3 className="text-2xl font-display font-bold text-foreground mb-3">Talk to our AI First</h3>
                   <p className="text-foreground/70 mb-8 leading-relaxed">
-                    Know exactly what you want? Book a live demo call directly on our calendar. We'll show you exactly how our AI sounds and integrates.
+                    Want to hear how human our bots sound? Call our live AI demo assistant right now. It can answer your questions about Neura and even help you book a meeting.
                   </p>
-                  <Button size="lg" className="w-full bg-foreground text-background hover:bg-foreground/90 dark:bg-white/90 font-semibold px-8 py-6 cursor-pointer">
-                    Schedule a Demo Call
-                  </Button>
+                  <a href="tel:+12186076415" className="block">
+                    <Button size="lg" className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-6 cursor-pointer group">
+                      <Phone className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
+                      Call +1 (218) 607-6415
+                    </Button>
+                  </a>
                 </div>
               </div>
 
@@ -179,13 +185,17 @@ export default function ContactPage() {
               viewport={{ once: true }}
               className="lg:col-span-7"
             >
-              <div className="p-8 md:p-12 rounded-3xl bg-foreground/[0.02] border border-border backdrop-blur-xl relative shadow-2xl h-full">
+              <div className="p-8 md:p-12 rounded-3xl bg-foreground/[0.02] border border-border backdrop-blur-md relative shadow-lg h-full">
                 <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
                 
-                <h2 className="text-3xl font-display font-bold text-foreground mb-2">Send us a Message</h2>
+                <AnimatedText
+                  el="h2"
+                  text="Send us a Message"
+                  className="text-3xl font-display font-bold text-foreground mb-2"
+                />
                 <p className="text-foreground/60 mb-8">Fill out the form below and our integration specialists will get back to you immediately.</p>
                 
-                <form onSubmit={handleSubmit} className="space-y-6 relative z-10 flex flex-col h-[calc(100%-80px)] justify-between">
+                <form onSubmit={handleSubmit} className="space-y-6 relative z-10 mt-8">
                   <div className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
@@ -264,7 +274,7 @@ export default function ContactPage() {
                     type="submit"
                     size="lg"
                     disabled={isSubmitting}
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-foreground font-semibold py-6 text-lg relative cursor-pointer group mt-6"
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-6 text-lg relative cursor-pointer group mt-6"
                   >
                     <span className="relative z-10">{isSubmitting ? "Sending..." : "Submit Request"}</span>
                   </Button>
@@ -276,10 +286,14 @@ export default function ContactPage() {
       </section>
 
       {/* FAQs Section */}
-      <section className="py-24 px-6 border-t border-border bg-foreground/[0.01]">
+      <section className="py-16 px-6 border-t border-border bg-foreground/[0.01]">
         <div className="container mx-auto max-w-3xl">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-display font-bold text-foreground mb-4">Frequently Asked Questions</h2>
+            <AnimatedText
+              el="h2"
+              text="Frequently Asked Questions"
+              className="text-4xl font-display font-bold text-foreground mb-4"
+            />
             <p className="text-foreground/60 text-lg">Everything you need to know about setting up your AI Receptionist.</p>
           </div>
           
@@ -302,7 +316,7 @@ export default function ContactPage() {
       <section className="relative h-[500px] border-t border-border flex items-center justify-center">
         {/* Contact popup on top of map */}
         <div className="absolute z-20 pointer-events-none hidden md:block">
-           <div className="bg-background/80 dark:bg-black/80 backdrop-blur-xl border border-border p-6 rounded-2xl shadow-2xl flex items-center gap-4">
+           <div className="bg-background/80 dark:bg-black/80 backdrop-blur-md border border-border p-6 rounded-2xl shadow-lg flex items-center gap-4">
              <div className="w-12 h-12 bg-purple-600/20 rounded-full flex items-center justify-center border border-purple-500/20">
                 <MapPin className="text-purple-500" />
              </div>

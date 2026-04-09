@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Check } from "lucide-react"
 import Link from "next/link"
+import { AnimatedText } from "@/components/ui/animated-text"
 
 const agentTypes = [
   {
@@ -47,7 +48,7 @@ export default function ServicesPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+      <section className="relative pt-32 pb-16 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent" />
         <div className="container mx-auto relative z-10">
           <motion.div
@@ -56,9 +57,11 @@ export default function ServicesPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground">
-              Our <span className="glow-purple">Services</span>
-            </h1>
+            <AnimatedText 
+              el="h1" 
+              text={<>Our <span className="glow-purple">Services</span></>}
+              className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground"
+            />
             <p className="text-xl text-foreground/70 leading-relaxed">
               From basic call handling to complex CRM integrations, we build highly capable Voice AI that drives results.
             </p>
@@ -67,7 +70,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Service Packages */}
-      <section className="py-20 px-6">
+      <section className="py-16 px-6">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {agentTypes.map((tier, index) => (
@@ -77,9 +80,9 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`relative p-8 rounded-2xl border backdrop-blur-xl
+                className={`relative p-8 rounded-2xl border backdrop-blur-md
                   bg-foreground/5 dark:bg-white/5 
-                  shadow-2xl shadow-black/20
+                  shadow-lg shadow-black/20
                   before:absolute before:inset-0 before:rounded-2xl before:p-[1px] before:bg-gradient-to-b before:from-white/20 before:to-transparent before:-z-10
                   after:absolute after:inset-0 after:rounded-2xl after:bg-gradient-to-t after:from-background/10 dark:from-black/10 after:to-transparent after:-z-10
                   ${
@@ -110,7 +113,7 @@ export default function ServicesPage() {
                   <Button
                     className={`w-full ${
                       tier.popular
-                        ? "bg-purple-600 hover:bg-purple-700 text-foreground"
+                        ? "bg-purple-600 hover:bg-purple-700 text-white"
                         : "bg-foreground/10 dark:bg-white/10 hover:bg-foreground/20 dark:bg-white/20 text-foreground"
                     }`}
                   >
@@ -124,7 +127,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Additional Services */}
-      <section className="py-20 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -132,9 +135,11 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-display font-black mb-6 text-foreground">
-              Additional <span className="glow-purple">Services</span>
-            </h2>
+            <AnimatedText 
+              el="h2" 
+              text={<>Additional <span className="glow-purple">Services</span></>}
+              className="text-4xl md:text-5xl font-display font-black mb-6 text-foreground"
+            />
             <p className="text-lg text-foreground/70 leading-relaxed">
               We offer comprehensive automation solutions beyond just voice answering.
             </p>
@@ -173,9 +178,9 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-xl border backdrop-blur-xl
+                className="p-6 rounded-xl border backdrop-blur-md
                   bg-foreground/5 dark:bg-white/5 
-                  shadow-2xl shadow-black/20
+                  shadow-lg shadow-black/20
                   before:absolute before:inset-0 before:rounded-xl before:p-[1px] before:bg-gradient-to-b before:from-white/20 before:to-transparent before:-z-10
                   after:absolute after:inset-0 after:rounded-xl after:bg-gradient-to-t after:from-background/10 dark:from-black/10 after:to-transparent after:-z-10
                   border-border hover:border-purple-500/70 transition-all duration-300"

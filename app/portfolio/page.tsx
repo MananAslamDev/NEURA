@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
+import { AnimatedText } from "@/components/ui/animated-text"
 
 const projects = [
   {
@@ -49,7 +50,7 @@ export default function PortfolioPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+      <section className="relative pt-32 pb-16 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent" />
         <div className="container mx-auto relative z-10">
           <motion.div
@@ -58,9 +59,11 @@ export default function PortfolioPage() {
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground">
-              Our <span className="glow-purple">Work</span>
-            </h1>
+            <AnimatedText
+              el="h1"
+              text={<>Our <span className="glow-purple">Work</span></>}
+              className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground"
+            />
             <p className="text-xl text-foreground/70 leading-relaxed">
               Explore our case studies of cutting-edge AI Voice Agents crafted for forward-thinking brands.
             </p>
@@ -69,7 +72,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20 px-6">
+      <section className="py-16 px-6">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
@@ -133,7 +136,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -141,14 +144,16 @@ export default function PortfolioPage() {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h2 className="text-4xl md:text-5xl font-display font-black mb-6 text-foreground">
-              Ready to Start Your <span className="glow-purple">Project?</span>
-            </h2>
+            <AnimatedText
+              el="h2"
+              text={<>Ready to Start Your <span className="glow-purple">Project?</span></>}
+              className="text-4xl md:text-5xl font-display font-black mb-6 text-foreground"
+            />
             <p className="text-lg text-foreground/70 mb-8 leading-relaxed">
               Let's create something extraordinary together. Get in touch to discuss your vision.
             </p>
             <Link href="/contact">
-              <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-foreground font-semibold px-8">
+              <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8">
                 Start a Project
               </Button>
             </Link>
