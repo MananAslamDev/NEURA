@@ -35,7 +35,7 @@ export function Footer() {
                 Intelligent. Automated. Always On.
                 <br />
                 <br />
-                Crafting intelligent AI voice receptionists that automate your front desk round the clock.
+                Intelligent AI Voice Receptionists for Clinics, Dentists, and Medspas.
               </p>
             </motion.div>
 

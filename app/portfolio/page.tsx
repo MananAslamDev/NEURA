@@ -13,34 +13,30 @@ const projects = [
   {
     title: "Dental Clinic Receptionist",
     category: "Call Booking & Scheduling",
-    description: "Handles inquiries and schedules appointments",
+    description: "Handles patient inquiries and autonomously schedules dental appointments into Jane App.",
     image: "/dental_ai_dashboard.png",
-    tags: ["Voice AI", "Calendar Integration", "Twilio", "OpenAI"],
-    link: "#",
+    tags: ["Voice AI", "Jane App API", "Twilio", "Rescheduling Logic"],
   },
   {
-    title: "Real Estate Lead Qualifier",
-    category: "CRM Automation",
-    description: "Scores leads and updates Google Sheets CRM",
-    image: "/real_estate_ai.png",
-    tags: ["Data Extraction", "Google Sheets API", "Lead Scoring"],
-    link: "#",
+    title: "Medspa Booking Agent",
+    category: "Patient Follow-ups & Sales",
+    description: "Answers procedure FAQs and books aesthetic consultations directly into Mindbody.",
+    image: "/real_estate_ai.png", 
+    tags: ["Mindbody API", "Procedure FAQs", "SMS Reminders"],
   },
   {
-    title: "E-Commerce Support",
-    category: "Intelligent FAQ Handling",
-    description: "Tracks orders and sends WhatsApp updates",
-    image: "/ecommerce_ai_support.png",
-    tags: ["WhatsApp Business API", "Shopify Integration", "Support Automation"],
-    link: "#",
-  },
-  {
-    title: "Gym Booking Assistant",
-    category: "Mobile Management",
-    description: "Manages class schedules and cancellations",
+    title: "Chiropractic Lead Qualifier",
+    category: "After-hours Answering",
+    description: "Taps into after-hours calls to triage urgent needs and book next-day adjustments.",
     image: "/gym_mobile_ai.png",
-    tags: ["Mindbody API", "Voice Interface", "SMS"],
-    link: "#",
+    tags: ["Google Calendar", "Voice Interface", "Urgency Triage"],
+  },
+  {
+    title: "Dermatology Clinic Assistant",
+    category: "Insurance & FAQs",
+    description: "A specialized agent trained on complex insurance codes and cosmetic procedure questions.",
+    image: "/saas_marketing_graph.png",
+    tags: ["Knowledge Base", "HIPAA Compliant", "Call Routing"],
   },
 ]
 
@@ -65,7 +61,7 @@ export default function PortfolioPage() {
               className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground"
             />
             <p className="text-xl text-foreground/70 leading-relaxed">
-              Explore our case studies of cutting-edge AI Voice Agents crafted for forward-thinking brands.
+              Explore our latest case studies showcasing intelligent AI voice receptionists deployed for medical clinics and medspas.
             </p>
           </motion.div>
         </div>
@@ -73,7 +69,7 @@ export default function PortfolioPage() {
 
       {/* Projects Grid */}
       <section className="py-16 px-6">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <motion.div
@@ -122,10 +118,10 @@ export default function PortfolioPage() {
 
                   {/* View Project Link */}
                   <button
-                    onClick={(e) => { e.preventDefault(); toast.info("Viewing case study data is currently restricted under client NDA."); }}
+                    onClick={(e) => { e.preventDefault(); toast.info("Viewing full case study data is currently restricted under HIPAA and client NDA."); }}
                     className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 font-semibold transition-colors group/link cursor-pointer"
                   >
-                    View Project
+                    View Project Details
                     <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                   </button>
                 </div>
@@ -146,15 +142,15 @@ export default function PortfolioPage() {
           >
             <AnimatedText
               el="h2"
-              text={<>Ready to Start Your <span className="glow-purple">Project?</span></>}
+              text={<>Ready to Automate Your <span className="glow-purple">Clinic?</span></>}
               className="text-4xl md:text-5xl font-display font-black mb-6 text-foreground"
             />
             <p className="text-lg text-foreground/70 mb-8 leading-relaxed">
-              Let's create something extraordinary together. Get in touch to discuss your vision.
+              Let&apos;s create a custom AI receptionist tailored for your patient workflows.
             </p>
             <Link href="/contact">
               <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8">
-                Start a Project
+                Start Your Project
               </Button>
             </Link>
           </motion.div>

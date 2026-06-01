@@ -29,12 +29,11 @@ export function CTA() {
 
             <div className="relative z-10">
               <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-6 text-balance">
-                Ready to Automate your <span className="text-purple-400">Front Desk?</span>
+                Ready to Scale Your <span className="text-purple-400">Clinic?</span>
               </h2>
 
               <p className="text-lg text-foreground/70 mb-10 max-w-2xl mx-auto text-balance leading-relaxed">
-                Let's discuss your business needs and deploy an AI voice receptionist that exceeds expectations. Get in touch
-                today and never miss a lead again.
+                Let&apos;s discuss your clinic's needs. Deploy a hyper-realistic AI voice receptionist to fully automate your patient booking workflows and reclaim your front desk's time.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

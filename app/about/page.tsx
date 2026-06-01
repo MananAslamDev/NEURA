@@ -113,7 +113,7 @@ export default function AboutPage() {
               className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground"
             />
             <p className="text-xl text-foreground/70 leading-relaxed">
-              Intelligent. Automated. Always on. We're a team of AI engineers building the future of customer interactions.
+              Intelligent. Automated. Always on. We&apos;re a team of engineers, designers, and marketers building the future of digital experiences.
             </p>
           </motion.div>
         </div>
@@ -134,13 +134,10 @@ export default function AboutPage() {
               and Voice Synthesis could solve this perfectly.
             </p>
             <p>
-              Today, we're a specialized AI Voice agency creating receptionist agents that don't just sound humanâ€”they perform
-              like a seasoned employee. From dental clinics to real estate firms, we've helped dozens of businesses
-              completely automate their front desk and achieve measurable ROI.
+              Today, we&apos;re a premier niche AI agency. Our star offering focuses on creating AI receptionist agents for healthcare and medspa providers that don&apos;t just sound human—they perform like a seasoned front desk employee, handling complex bookings with empathy and precision.
             </p>
             <p>
-              Our approach combines state-of-the-art voice models with bulletproof logic workflows (make.com, internal APIs),
-              ensuring that every caller gets a helpful, accurate, and instantaneous response.
+              Our approach combines state-of-the-art voice models with bulletproof logic workflows and robust EHR/EMR integrations, ensuring that every clinic gets a holistic autonomous solution that drives growth and patient satisfaction.
             </p>
             <p className="text-foreground font-semibold text-xl">
               Powered by <span className="glow-purple">NEURA.</span>  where intelligence meets design.
@@ -248,10 +245,10 @@ export default function AboutPage() {
             <div className="flex flex-wrap justify-center gap-4 text-sm text-foreground/60">
               {[
                 "Voice AI Models",
-                "Prompt Engineering",
-                "Make.com / Zapier",
-                "Twilio Integration",
-                "RAG Architecture",
+                "EHR/EMR Integrations",
+                "HIPAA Compliance Workflows",
+                "Appointment Scheduling Logic",
+                "Patient Empathy Training",
                 "API Integrations",
               ].map((skill) => (
                 <span

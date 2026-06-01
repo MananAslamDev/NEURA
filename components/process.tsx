@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { motion } from "framer-motion"
 import { Lightbulb, Pencil, Code, Rocket } from "lucide-react"
@@ -8,25 +8,25 @@ const steps = [
     icon: Lightbulb,
     number: "01",
     title: "Discovery",
-    description: "We dive deep into your business goals, target audience, and project requirements.",
+    description: "We dive deep into your clinic's scheduling workflows, patient FAQs, and software stack.",
   },
   {
     icon: Pencil,
     number: "02",
-    title: "Design",
-    description: "Our designers craft beautiful, user-centric interfaces that align with your brand.",
+    title: "Customization",
+    description: "We train your AI receptionist on your specific medical procedures, pricing, and brand tone.",
   },
   {
     icon: Code,
     number: "03",
-    title: "Development",
-    description: "We build robust, scalable solutions using the latest technologies and best practices.",
+    title: "Integration",
+    description: "We securely connect the AI to your existing calendar, EHR/EMR system, and phone lines.",
   },
   {
     icon: Rocket,
     number: "04",
     title: "Launch",
-    description: "We deploy your project and provide ongoing support to ensure continued success.",
+    description: "Your AI goes live, handling patient calls 24/7 with ongoing optimization and support.",
   },
 ]
 

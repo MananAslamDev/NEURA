@@ -80,9 +80,9 @@ function CustomCountUp({ end, suffix, duration = 3 }: CustomCountUpProps) {
 //=================================================================
 export function Hero() {
   const stats = [
-    { end: 10, suffix: "k+", label: "Calls Handled" },
-    { end: 99, suffix: "%", label: "Query Resolution" },
-    { end: 500, suffix: "ms", label: "Response Latency" },
+    { end: 10, suffix: "k+", label: "AI Calls Handled" },
+    { end: 150, suffix: "+", label: "Appointments Booked" },
+    { end: 99, suffix: "%", label: "Accuracy Rate" },
   ];
 
   return (
@@ -111,7 +111,7 @@ export function Hero() {
             className="mb-6"
           >
             <span className="inline-block px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium">
-              Neural. Digital. Different.
+              Your 24/7 AI Receptionist for Clinics & Medspas.
             </span>
           </motion.div>
 
@@ -132,7 +132,7 @@ export function Hero() {
           {/* Description */}
           <AnimatedText
             el="p"
-            text="Instantly deploy a hyper-realistic AI receptionist that answers calls, books appointments, and captures every lead—day or night."
+            text="Deploy our hyper-realistic AI receptionist to capture every patient lead, automate your scheduling, and streamline your clinic's front desk operations."
             className="text-lg md:text-xl text-foreground/60 mb-10 max-w-2xl mx-auto text-balance leading-relaxed"
           />
 
@@ -199,12 +199,11 @@ export function Hero() {
 
             <div className="relative z-10">
               <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-6 text-balance">
-                Ready to Automate your <span className="text-purple-400">Front Desk?</span>
+                Ready to Scale Your <span className="text-purple-400">Clinic?</span>
               </h2>
 
               <p className="text-lg text-foreground/70 mb-10 max-w-2xl mx-auto text-balance leading-relaxed">
-                Let's discuss your business needs and deploy an AI voice receptionist that exceeds expectations. Get in touch
-                today and never miss a lead again.
+                Let&apos;s discuss your clinic's needs. From deploying a hyper-realistic AI voice receptionist to fully automating your patient booking workflows, we have you covered.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -1,13 +1,13 @@
-﻿"use client"
+"use client"
 
 import { motion } from "framer-motion"
 import { CheckCircle2 } from "lucide-react"
 
 const features = [
-  "Conversational, human-like voice AI",
-  "Zero wait times and multiline answering",
-  "Instant, hands-free CRM synchronization",
-  "Deep integration with global calendars",
+  "Automated Appointment Booking & Reminders",
+  "Seamless EHR/EMR Integration",
+  "Intelligent FAQ Handling for Procedures",
+  "HIPAA-Compliant Patient Data Workflows",
 ]
 
 export function About() {
@@ -23,12 +23,12 @@ export function About() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground mb-6 text-balance">
-              We Automate Your <span className="text-purple-500">Front Desk</span>
+              We Automate Your Clinic's <span className="text-purple-500">Front Desk</span>
             </h2>
 
             <p className="text-lg text-foreground/60 mb-8 leading-relaxed">
-              NEURA is an advanced AI agency specializing in crafting intelligent voice receptionists.
-              We combine natural language understanding, real-time fetching, and robust system integrations to deliver AI agents that drive real business results and save you thousands of hours.
+              NEURA specializes in deploying intelligent AI voice receptionists designed explicitly for medical clinics, dental practices, and medspas. 
+              We combine cutting-edge AI with reliable healthcare systems integration to manage your bookings, handle patient inquiries, and save your staff thousands of hours.
             </p>
 
             <div className="space-y-4 mb-8">

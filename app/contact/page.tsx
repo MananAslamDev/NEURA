@@ -15,20 +15,20 @@ import { toast } from "sonner"
 
 const faqs = [
   {
-    question: "How fast can you deploy an AI receptionist?",
-    answer: "Typically, our team can configure, connect to your APIs, and deploy a fully trained AI Voice Receptionist within 3 to 7 business days, depending on workflow complexity."
+    question: "How fast can you deploy an AI receptionist for my clinic?",
+    answer: "Typically, our team can configure, connect to your EHR/EMR or scheduling APIs, and deploy a fully trained AI Voice Receptionist within 3 to 7 business days, depending on workflow complexity."
   },
   {
-    question: "Can it integrate with my current calendar?",
-    answer: "Yes! Our AI agents natively integrate with Google Calendar, Outlook, and popular CRM schedulers like Calendly and Mindbody to book, cancel, or reschedule appointments seamlessly."
+    question: "Can the AI integrate with my current calendar?",
+    answer: "Yes! Our AI agents natively integrate with Google Calendar, Outlook, and popular healthcare schedulers like Jane App, Mindbody, and Calendly to book, cancel, or reschedule appointments seamlessly."
   },
   {
-    question: "Do callers know they are speaking to AI?",
-    answer: "Our voice models are hyper-realistic with breathing sounds and natural latencies (<500ms). While they sound indistinguishable from a human, we typically recommend a brief disclosure."
+    question: "Is the AI HIPAA compliant?",
+    answer: "Yes, our voice models and data workflows are built with strict privacy protocols to ensure patient data remains secure, encrypted, and HIPAA compliant."
   },
   {
-    question: "What happens if the AI cannot answer a question?",
-    answer: "We configure fallback logic so that if the AI detects a question outside its knowledge base, it immediately routes the call to a live human agent or takes a message to send directly to your inbox."
+    question: "Can the AI handle complex rescheduling?",
+    answer: "Absolutely. The AI is trained to handle complex logic, including finding alternate times, adhering to your clinic's cancellation policies, and updating your EHR immediately."
   }
 ];
 
@@ -76,11 +76,11 @@ export default function ContactPage() {
           >
             <AnimatedText
               el="h1"
-              text={<>Automate Your <span className="glow-purple">Front Desk</span></>}
+              text={<>Let&apos;s Build Something <span className="glow-purple">Great</span></>}
               className="text-5xl md:text-7xl font-display font-black mb-6 text-foreground text-balance leading-tight"
             />
             <p className="text-xl text-foreground/70 leading-relaxed mb-10 max-w-2xl mx-auto">
-              Ready to stop missing calls and start converting every lead? Get in touch with our team to configure your AI Voice Agent today.
+              Ready to scale your clinic with an intelligent AI voice receptionist? Get in touch today to automate your front desk.
             </p>
           </motion.div>
         </div>
@@ -238,7 +238,7 @@ export default function ContactPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="needs" className="text-sm font-medium text-foreground/70">Monthly Call Volume</label>
+                        <label htmlFor="needs" className="text-sm font-medium text-foreground/70">Project Type</label>
                         <select
                           id="needs"
                           name="needs"
@@ -246,17 +246,17 @@ export default function ContactPage() {
                           onChange={handleChange}
                           className="w-full px-4 h-12 rounded-lg bg-background/50 dark:bg-black/50 border border-border text-foreground focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
                         >
-                          <option value="" disabled className="text-foreground/30">Select volume</option>
-                          <option value="under 500">Under 500 calls/mo</option>
-                          <option value="500-2000">500 - 2,000 calls/mo</option>
-                          <option value="2000+">2,000+ calls/mo</option>
-                          <option value="not sure">Not sure</option>
+                          <option value="" disabled className="text-foreground/30">Select type</option>
+                          <option value="full-booking">Full Booking Automation</option>
+                          <option value="after-hours">After-hours Answering</option>
+                          <option value="faq-handling">FAQ & Inquiries</option>
+                          <option value="other">Other / Multiple</option>
                         </select>
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-foreground/70">What do you want the AI to do? *</label>
+                      <label htmlFor="message" className="text-sm font-medium text-foreground/70">Tell us about your project *</label>
                       <Textarea
                         id="message"
                         name="message"
@@ -265,7 +265,7 @@ export default function ContactPage() {
                         onChange={handleChange}
                         rows={5}
                         className="bg-background/50 dark:bg-black/50 border-border text-foreground placeholder:text-foreground/30 focus:border-purple-500 resize-none p-4"
-                        placeholder="e.g. I need an AI to answer missed calls, book appointments in my CRM, and send a WhatsApp confirmation..."
+                        placeholder="e.g. I need an AI to answer after-hours calls and book appointments in Mindbody..."
                       />
                     </div>
                   </div>
